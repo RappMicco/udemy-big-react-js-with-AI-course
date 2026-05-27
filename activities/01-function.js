@@ -148,3 +148,116 @@ console.log(
 
 // 4. arrow function
 const arrowFucntion = () => a + b;
+
+function getFilm(id) {
+  return movies.find((item) => item.id === id);
+}
+
+const film = getFilm(2);
+
+// Destructurig Objects and array
+
+// console.log(film);
+// const title = film.title;
+
+const { title, releaseDate, director } = film;
+
+console.log(title);
+console.log(releaseDate);
+console.log(director);
+
+// REST
+const [firstGenre, ...other] = film.genres;
+
+console.log(other);
+
+// SPREAD
+movies[1].genres = [...film.genres, "humor"];
+console.log(film.genres);
+
+const str = "hello";
+
+const testSpread = [...str];
+
+console.log(testSpread);
+
+const updatedFilm = { ...film, newKey: "hello" };
+console.log(updatedFilm);
+
+// template literal
+console.log(
+  `${film.title}, is released in ${film.releaseDate.split("-")[0]} has a rating of ${film.ratings.imdb.rating}`,
+);
+
+// if else condition
+const age = 18;
+let canVote;
+
+if (age > 18) {
+  canVote = "You can vote!";
+} else {
+  canVote = "You are too young to vote!";
+}
+
+console.log(canVote);
+
+// Ternary operator
+const canVote2 = age >= 18 ? "You can vote" : "You are too young to vote!";
+
+console.log(canVote2);
+
+const score = 55;
+
+const grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : "D";
+
+console.log(grade);
+
+////////////////////
+// Logical operator
+
+//&&
+const result = film.ratings.imdb.rating > 8 && console.log("Good film");
+
+// || (OR)
+
+const result1 = film.ratings.imdb.rating > 9 || console.log("Good film!");
+
+// ??
+const userAge = null;
+const defaultAge = 18;
+
+const age1 = userAge ?? defaultAge;
+console.log(age1);
+
+// optional chaining
+const getRaitingVotes = () => {
+  const idmbRating = film.ratings.imdb.votes;
+  const rottenTomatoesRating = film.ratings.rottenTomatoes?.reviewsCount;
+
+  console.log("Test:", rottenTomatoesRating);
+
+  return idmbRating + rottenTomatoesRating;
+};
+
+console.log(getRaitingVotes());
+
+const title1 = movies.map((i) => {
+  return i.title;
+});
+
+console.log(title1);
+
+const title2 = movies.map((i) => {
+  return { name: i.title, director: i.director };
+});
+
+console.log(title2);
+
+// filter method
+const grreatFilms = movies.filter((film) => film.rating >= 9);
+
+console.log(grreatFilms);
+
+const longMovies = movies.filter((film) => film.runtime >= 150);
+
+console.log(longMovies);
